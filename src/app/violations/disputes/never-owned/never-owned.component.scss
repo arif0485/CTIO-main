@@ -1,0 +1,97 @@
+.main-container {
+  padding: 40px 0;
+    h5,
+    p {
+      font-size: 18px !important;
+      line-height: 21px !important;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  
+    .non-liability-heading {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      color: #000000;
+      margin-bottom: 28px;
+    }
+    .fields-wrapper {
+      display: flex;
+      justify-content: space-between;
+      .label {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        /* identical to box height */
+        letter-spacing: 0.1em;
+        color: #000000;
+        margin-bottom: 8px;
+      }
+      .name {
+        input {
+          width: calc(30vw - 20px);
+          height: 100%;
+          border: none;
+          outline: none;
+          padding: 12px 15px;
+          border-radius: 10px;
+        }
+      }
+    }
+    .final-declarations {
+      input[type="checkbox"] {
+        transform: scale(1.6);
+        background: #f4f4f4;
+        border: 1px solid #b0b0b0;
+        border-radius: 10px;
+        accent-color: #ef7521;
+      }
+      .text {
+        margin-left: 15px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000000;
+        display: inline;
+      }
+    }
+    .button-wrapper {
+      text-align: right;
+      button {
+        border: none;
+        outline: none;
+        font-size: 20px;
+      }
+      .cancel {
+        width: 215.97px;
+        height: 50px;
+        color: #706a6a;
+        background-color: transparent;
+      }
+      .submit {
+        width: 215.97px;
+        height: 50px;
+        background: #ef7521;
+        border-radius: 10px;
+        color: white;
+        font-weight: 700;
+      }
+    }
+  }
+  @media screen and (max-width: 765px) {
+    .fields-wrapper{
+      flex-direction: column;
+      .field{
+        margin-bottom: 10px;
+      }
+      .field input {
+        width: 100% !important;
+      }
+    }
+    .button-wrapper {
+      text-align: center !important;
+      button {
+        width: 180px !important;
+      }
+    }
+  }

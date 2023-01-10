@@ -1,0 +1,24 @@
+<div class="main-container">
+    <div class="fields-wrapper my-3">
+        <div class="details">
+            <div class="label px-3">
+                DETAILS
+            </div>
+            <div class="field w-100">
+                <textarea rows="4" cols="100" value="" placeholder="ENTER DETAILS HERE"></textarea>
+                <span class="remaining">Remaining characters 500</span>
+            </div>
+        </div>
+    </div>
+    <div class="final-declarations my-5">
+        <span>
+            <input type="checkbox" id="declaration">
+        </span>
+        <label class="text" for="declaration">By Clicking Submit, I declare under penalty and perjury thet the above
+            information is true and correct.</label>
+    </div>
+    <div class="button-wrapper mt-4">
+        <button class="cancel me-3" (click)="btnAction.emit('cancel')">CANCEL</button>
+        <button class="submit" (click)="btnAction.emit('submit')">Submit</button>
+    </div>
+</div>

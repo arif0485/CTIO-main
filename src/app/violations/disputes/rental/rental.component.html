@@ -1,0 +1,180 @@
+<div class="main-container">
+    <h5 class="heading-primary px-3">
+        Affidavit of Non-Liability
+    </h5>
+    <p class="px-3 mb-5">
+        If you are a bona fide renting company please upload the copy of the rental agreement showing the date of rental
+        and the name and address of the rentee. One we review the paperwork we will respond by email within 2 business
+        day.
+    </p>
+    <hr>
+    <h5 class="px-3 mt-5 my-4">
+        I declare that on the date of the violation the vehicle bearing the license plate number above was Rented
+    </h5>
+    <h5 class="non-liability-heading my-4">
+        Declaration of Non-Liability
+    </h5>
+    <p>Name and Address of Responsible Party</p>
+    <div class="fields-wrapper d-flex justify-content-between mt-5 my-4">
+        <div class="rental-aggrement-date">
+            <div class="label px-3">
+                RENTAL AGREEMENT START DATE
+            </div>
+            <div class="field">
+                <input type="date" placeholder="SELECT DATE">
+            </div>
+        </div>
+        <div class="rental-aggrement-date">
+            <div class="label px-3">
+                RENTAL AGREEMENT END DATE
+            </div>
+            <div class="field">
+                <input type="date" placeholder="SELECT DATE">
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-4 d-flex justify-content-between">
+        <div class="name">
+            <div class="label px-3">
+                FIRST NAME
+            </div>
+            <div class="field">
+                <input type="text" placeholder="FIRST NAME">
+            </div>
+        </div>
+        <div class="name">
+            <div class="label px-3">
+                LAST NAME
+            </div>
+            <div class="field">
+                <input type="text" placeholder="LAST NAME">
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-4 d-flex justify-content-between">
+        <div class="address">
+            <div class="label px-3">
+                MAILING ADDRESS
+            </div>
+            <div class="field">
+                <input type="text"  placeholder="MAILING ADDRESS">
+            </div>
+        </div>
+        <div class="apt">
+            <div class="label px-3">
+                APT / SUITE <span style="color:#B0B0B0; font-style:italic">(optional)</span>
+            </div>
+            <div class="field">
+                <input type="date" placeholder="SELECT DATE">
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-4 d-flex justify-content-between">
+        <div class="city">
+            <div class="label px-3">
+                CITY
+            </div>
+            <div class="field">
+                <input type="text" placeholder="ENTER CITY">
+            </div>
+        </div>
+        <div class="state">
+            <div class="label px-3">
+                REGION / STATE
+            </div>
+            <div class="field w-100">
+                <select required>
+                    <option disabled selected value="">SELECT REGION / STATE</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-4 d-flex justify-content-between">
+        <div class="country">
+            <div class="label px-3">
+                COUNTRY
+            </div>
+            <div class="field w-100">
+                <select required>
+                    <option disabled selected value="">SELECT COUNTRY</option>
+                </select>
+            </div>
+        </div>
+        <div class="state">
+            <div class="label px-3">
+                ZIPCODE
+            </div>
+            <div class="field">
+                <input type="text" placeholder="ZIPCODE">
+            </div>
+        </div>
+    </div>
+
+    <h5 class="px-3 my-4 mt-5">
+        You must include the following document with above Declaration of Non-Liability:
+    </h5>
+    <ul>
+        <li>
+            <h5 style="font-weight: 700;">
+                Copy of the Rental Agreement providing the rentee information above and the term of agreement.
+            </h5>
+        </li>
+    </ul>
+    <p>
+        If all the information is not accurately completed and verified, the affidavit wil be disregarded and you will
+        be held responsible of the violation.
+    </p>
+    <div class="fields-wrapper my-5">
+        <div class="attachment-type">
+            <div class="label px-3">
+                ATTACHMENT TYPE
+            </div>
+            <div class="field w-100">
+                <select required>
+                    <option disabled selected value="">SELECT OPTION</option>
+                    <option value="Copy of Rental Agreement">Copy of Rental Agreement</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-5">
+        <div class="attachment-file">
+            <div class="label px-3">
+                ATTACH FILE
+            </div>
+            <div class="field upload w-100">
+                <!-- <input type="file" name="file-upload" id=""> -->
+                <input class="box__file" accept=".pdf,.jpg,.jpeg,.png,.doc,
+                .docx,.xls,.xlsx,.wav,.mp3" type="file" name="files[]" id="file"
+                    data-multiple-caption="{count} files selected" multiple />
+                <label for="file"><span class="box__dragndrop">drag and drop files Or </span><span
+                        class="box__browse">Browse Files</span></label>
+                <!-- <button class="box__button">Upload</button> -->
+            </div>
+            <div class="helper-text mt-1"> Maximum file size is 5mb and supporting formats are pdf, jpg, jpeg, png, doc,
+                docx, xls, xlsx, wav, mp3.</div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-5">
+        <div class="details">
+            <div class="label px-3">
+                DETAILS <span style="color:#B0B0B0; font-style:italic">(optional)</span>
+            </div>
+            <div class="field w-100">
+                <textarea rows="4" cols="100" value="" placeholder="ENTER DETAILS HERE"></textarea>
+                <span class="remaining">Remaining characters 500</span>
+            </div>
+        </div>
+    </div>
+    <div class="final-declarations my-5">
+        <span>
+            <input type="checkbox" id="declaration">
+        </span>
+        <label class="text" for="declaration">By Clicking Submit, I declare under penalty and perjury thet the above
+            information is true and correct.</label>
+    </div>
+    <div class="button-wrapper mt-4">
+        <button class="cancel me-3" (click)="btnAction.emit('cancel')">CANCEL</button>
+        <button class="submit" (click)="btnAction.emit('submit')">Submit</button>
+    </div>
+</div>

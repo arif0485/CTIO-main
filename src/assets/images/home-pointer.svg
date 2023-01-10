@@ -1,0 +1,44 @@
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 634 458" fill="none">
+            <g filter="url(#filter0_d_145_133)">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M175.147 380.651C76.9815 326.277 10.2961 218.273 10.2961 10.5988H38.2961C38.2961 211.845 102.315 308.301 188.714 356.157C277.23 405.186 392.471 405.519 501.145 405.519H587.472V433.519H499.164C392.858 433.521 270.603 433.523 175.147 380.651Z"
+                    fill="white" />
+                <path d="M623.936 419.519L579.286 447.689L579.286 391.349L623.936 419.519Z" fill="white" />
+
+            </g>
+            <defs>
+                <filter id="filter0_d_145_133" x="0.296143" y="0.598755" width="633.64" height="457.091"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha" />
+                    <feOffset />
+                    <feGaussianBlur stdDeviation="5" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.14 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_145_133" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_145_133" result="shape" />
+                </filter>
+            </defs>
+            <svg xmlns="http://www.w3.org/2000/svg" height="275" viewBox="170 -23 29 173" fill="none">
+                <path d="M2.45801 1.01733C3.74033 69.2276 15.6002 125.554 54.4813 175.066" stroke="#EF7521"
+                    stroke-width="3" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                viewBox="-10 -62 400 400">
+                <defs>
+                    <path d="M1, 200a200,120 5 0, 0 390, 0a200, 200 0 1, 0 -400, 0" id="txt-path"></path>
+                </defs>
+                <text fill="#D54E02" font-size="16" font-family="" font-weight="600">
+                    <textPath startOffset="0" xlink:href="#txt-path">TRAFFIC ACCIDENTS</textPath>
+                </text>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="585" viewBox="-170 -104 352 43" fill="none">
+                <path d="M380.472 40.5191H294.145C196.415 21.5191 79.2241 40.5191 1.2677 23.34625" stroke="#EF7521"
+                    stroke-width="3"></path>
+
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="auto" viewBox="-101 -136.9 10 157" fill="none" width="605">
+                <path d="M15.0251 2.049L.276087 10.8292L.275969 2.209047L16.0251 10.04941Z" fill="#EF7521"></path>
+            </svg>
+        </svg>

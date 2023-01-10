@@ -1,0 +1,43 @@
+<div class="main-container">
+    <h5 class="px-3 mt-2 my-4">
+        I declare that on the date of the violation the vehicle bearing the license plate number above was not and has never been owned by me.
+    </h5>
+    <h5 class="non-liability-heading my-4">
+        Declaration of Non-Liability
+    </h5>
+    <p>Name of Responsible Party</p>
+    <div class="fields-wrapper my-4">
+        <div class="name">
+            <div class="label px-3">
+                FIRST NAME
+            </div>
+            <div class="field">
+                <input type="text" placeholder="FIRST NAME">
+            </div>
+        </div>
+        <div class="name">
+            <div class="label px-3">
+                LAST NAME
+            </div>
+            <div class="field">
+                <input type="text" placeholder="LAST NAME">
+            </div>
+        </div>
+    </div>
+    <p class="my-5">
+        We will review the photo of the vehicle and confirm the DMV-provided owner information. You will receive a
+        response by email within 2 business days.
+    </p>
+
+    <div class="final-declarations my-5">
+        <span>
+            <input type="checkbox" id="declaration">
+        </span>
+        <label class="text" for="declaration">By Clicking Submit, I declare under penalty and perjury thet the above
+            information is true and correct.</label>
+    </div>
+    <div class="button-wrapper mt-4">
+        <button class="cancel me-3" (click)="btnAction.emit('cancel')">CANCEL</button>
+        <button class="submit" (click)="btnAction.emit('submit')">Submit</button>
+    </div>
+</div>

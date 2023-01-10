@@ -1,0 +1,40 @@
+[{ 
+    "id":"1", 
+   "Question": "How do I pay a Civil Penalty?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},
+{ 
+    "id":"2", 
+   "Question": "How do I dispute a Civil Penalty?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},
+{
+    "id":"3",
+    "Question": " What is the penalty for a safety violation?",
+    "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+ },
+{
+    "id":"4",
+    "Question": "What address is a Notice of Civil Penalty Assessment Summary mailed to?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},
+{
+    "id":"5",
+    "Question": "I have disputed a Civil Penalty but I am not satisfied with the outcome, what can I do?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},{
+    "id":"6",
+    "Question": "I requested a hearing but I am not satisfied with the outcome, what can I do?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},
+{
+    "id":"7",
+    "Question": "How do I file an appeal with the County Court?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+},
+{
+    "id":"8",
+    "Question": "I just got a notice from a company called south West Credit Systems LP. Who are they and what to do they have to do with CTIO's Safety Enforcement Program?",
+   "Answer":"The easiest way to pay is online, click here. You will need your license plate or notice number. You can also make a payment with your notice number using our automated phone system at (800) 720-1200."
+}
+]

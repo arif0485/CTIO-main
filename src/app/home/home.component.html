@@ -1,0 +1,82 @@
+<div class="main-container pt-3">
+    <div class="curve-text-wrapper">
+        <img class="home-pointer" src="../../assets/images/home-pointer.svg" alt="">
+    </div>
+    <div class="main-content">
+        <div class="head-section">
+            <h2>
+                CTIO strives towards Vision Zero:
+            </h2>
+            <p>
+                Eliminating all traffic fatalities and severe injuries
+            </p>
+        </div>
+        <div class="box">
+            <h5 class="text-uppercase">See notice of civil penalty</h5>
+            <div class="line"></div>
+            <h5>Do you have the notice number?</h5>
+            <p class="text-center">Located on the top-right corner of your notice</p>
+            <div class="text-center" style="overflow-x: hidden;">
+                <div class="btn-group">
+                    <button class="yes" [ngClass]="{'selected': hasNoticeNumber}" (click)="hasNoticeNumber = true">YES</button>
+                    <button class="no" [ngClass]="{'selected': !hasNoticeNumber}" (click)="hasNoticeNumber = false">NO</button>
+                </div>
+            </div>
+            <div class="field-wrapper notice" *ngIf="hasNoticeNumber">
+                <div class="label text-cemter">
+                    NOTICE NUMBER
+                </div>
+                <div class="field" [ngClass]="{'error': noticeNumberError}">
+                    <input type="text" [(ngModel)]="noticeNumber" placeholder="000 000 000">
+                    <div class="text-danger text-end error-text mt-1">Required field</div>
+                </div>
+                <div class="field" [ngClass]="{'error': ValidnoticeNumberError}">                   
+                    <div class="text-danger text-end error-text mt-1">Please Enter Valid Notice Number</div>
+                </div>
+            </div>
+
+            <div class="field-wrapper my-4" *ngIf="!hasNoticeNumber">
+                <div class="label text-cemter">
+                    LICENSE PLATE NUMBER
+                </div>
+                <div class="field" [ngClass]="{'error': showLicenceEroor}">
+                    <input type="text" [(ngModel)]="licencePlate" placeholder="222 AAA">
+                    <div class="text-danger text-end error-text mt-1">Required field</div>
+                </div>
+
+            </div>
+            <div class="field-wrapper mb-3" *ngIf="!hasNoticeNumber">
+                <div class="label text-cemter">
+                    LICENSE PLATE STATE
+                </div>
+                <div class="field" [ngClass]="{'error': showStateError}">
+                    <select (change)="onSelectedChangeState($event)" required>
+                        <option selected value="">SELECT STATE</option>
+                        <option *ngFor="let sta of states" value={{sta.value}}>{{sta.text}}</option>
+                    </select>
+                    <div class="text-danger text-end error-text mt-1">Required field</div>
+                </div>
+                <br>
+                <div class="field" [ngClass]="{'error': ValidLicenceNumber}">
+                    <div class="text-danger text-end error-text mt-1">Please EnterValidNumber or Enter valid State</div>
+                </div>
+            </div>
+            <button class="search w-100 mt-1" (click)="searchViolations()">
+                Search for Safety Violations
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal" *ngIf="showModal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="close-btn" (click)="closeModal()">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h2>Some Content Here</h2>
+        </div>
+    </div>
+</div>

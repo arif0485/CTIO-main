@@ -1,0 +1,102 @@
+<div class="main-container">
+    <h5 class="heading-primary px-3">
+        Affidavit of Non-Liability
+    </h5>
+    <p class="px-3 mb-5">
+        If your vehicle was stolen, please upload a police report or insurance claim showing the date of the theft and
+        recovery, if applicable. Once we review the paperwork we will respond by email within 2 business days.
+    </p>
+    <hr>
+    <h5 class="px-3 mt-5 my-4">
+        I declare that on the date of the violation the vehicle bearing the license plate number above was Reported
+        Stolen
+    </h5>
+    <h5 class="non-liability-heading my-4">
+        Declaration of Non-Liability
+    </h5>
+    <div class="fields-wrapper d-flex justify-content-between mb-5">
+        <div class="loss">
+            <div class="label px-3">
+                DATE OF LOSS
+            </div>
+            <div class="field">
+                <input type="date" placeholder="SELECT DATE">
+            </div>
+        </div>
+        <div class="recovery">
+            <div class="label px-3">
+                DATE OF RECOVERY <span style="color:#B0B0B0; font-style:italic">(optional)</span>
+            </div>
+            <div class="field">
+                <input type="date" placeholder="SELECT DATE">
+            </div>
+        </div>
+    </div>
+    <h5 class="px-3 my-4 mt-5">
+        You must include the following document with above Declaration of Non-Liability:
+    </h5>
+    <ul>
+        <li>
+            <h5 style="font-weight: 700;">
+                A police report or insurance claim citing the date of theft.
+            </h5>
+        </li>
+    </ul>
+    <p>
+        If all the information is not accurately completed and verified, the affidavit wil be disregarded and you will
+        be held responsible of the violation.
+    </p>
+    <div class="fields-wrapper my-5">
+        <div class="attachment-type">
+            <div class="label px-3">
+                ATTACHMENT TYPE
+            </div>
+            <div class="field w-100">
+                <select required>
+                    <option disabled selected value="">SELECT OPTION</option>
+                    <option value="Police Report or Insurance Claim form">Police Report or Insurance Claim form</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-5">
+        <div class="attachment-file">
+            <div class="label px-3">
+                ATTACH FILE
+            </div>
+            <div class="field upload w-100">
+                <!-- <input type="file" name="file-upload" id=""> -->
+                <input class="box__file" accept=".pdf,.jpg,.jpeg,.png,.doc,
+                .docx,.xls,.xlsx,.wav,.mp3" type="file" name="files[]" id="file"
+                    data-multiple-caption="{count} files selected" multiple />
+                <label for="file"><span class="box__dragndrop">drag and drop files Or </span><span
+                        class="box__browse">Browse Files</span></label>
+                <!-- <button class="box__button">Upload</button> -->
+            </div>
+            <div class="helper-text mt-1"> Maximum file size is 5mb and supporting formats are pdf, jpg, jpeg, png, doc,
+                docx, xls, xlsx, wav, mp3.</div>
+        </div>
+    </div>
+    <div class="fields-wrapper my-5">
+        <div class="details">
+            <div class="label px-3">
+                DETAILS <span style="color:#B0B0B0; font-style:italic">(optional)</span>
+            </div>
+            <div class="field w-100">
+                <textarea rows="4" cols="100" value="" placeholder="ENTER DETAILS HERE"></textarea>
+                <span class="remaining">Remaining characters 500</span>
+            </div>
+        </div>
+    </div>
+    <div class="final-declarations my-5">
+        <span>
+            <input type="checkbox" id="declaration">
+        </span>
+        <label class="text" for="declaration">By Clicking Submit, I declare under penalty and perjury thet the above
+            information is true and correct.</label>
+    </div>
+    <div class="button-wrapper mt-4">
+        <button class="cancel me-3" (click)="btnAction.emit('cancel')">CANCEL</button>
+        <button class="submit" (click)="btnAction.emit('submit')">Submit</button>
+    </div>
+</div>
