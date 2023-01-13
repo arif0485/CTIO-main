@@ -409,7 +409,7 @@
   position: fixed; /* Stay in place */
   align-items: center;
   justify-content: center;
-  z-index: 10; /* Sit on top */
+  z-index: 9999; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -500,6 +500,106 @@
   text-decoration: none;
   cursor: pointer;
 }
+#feedbackModal {
+  .modal-content {
+    width: 600px;
+    min-height: 400px;
+  }
+  .modal-body {
+    padding: 35px !important;
+    h5 {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+      color: #283a7b;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      span {
+        cursor: pointer;
+        width: 120px;
+        height: 40px;
+        background: #f4f4f4;
+        border-radius: 10px;
+        text-align: center;
+        padding: 7px 10px;
+      }
+    }
+    .comment {
+      textarea {
+        border: none;
+        outline: none;
+        resize: none;
+        width: 100%;
+        background: #f4f4f4;
+        border-radius: 10px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.1em;
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.19);
+      }
+    }
+    .button-wrapper {
+      text-align: right;
+      margin-top: 3rem;
+      button {
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+      .cancel {
+        width: 160px;
+        height: 50px;
+        color: #706a6a;
+        background-color: transparent;
+        font-weight: 400;
+      }
+      .submit {
+        width: 160px;
+        height: 45px;
+        background: #ef7521;
+        border-radius: 10px;
+        color: white;
+        font-weight: 700;
+      }
+    }
+  }
+}
+#successModal {
+  h5 {
+    margin-top: 90px;
+    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #ef7521;
+  }
+  button {
+    border: none;
+    outline: none;
+    width: 250px;
+    height: 50px;
+
+    background: #ef7521;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+
+    color: #ffffff;
+    margin-top: 100px;
+  }
+}
+
 @media screen and (max-width: 765px) {
   .footer {
     margin-right: 10px;

@@ -3,12 +3,12 @@
 </ng-template>
 <div class="voilations-container" *ngIf="showViolations; else home">
     <h2 class="main-header mb-4">Safety Violations</h2>
-    <div class="sub-menu" *ngIf="showDisputes">
+    <div class="sub-menu">
         <nav class="">
             <div class="btn-group">
                 <a class="btn" aria-current="page">co tbs·878</a>
-                <a  class="btn">Correspondence History</a>
-                <a  class="btn">
+                <a class="btn">Correspondence History</a>
+                <a class="btn">
                     <i class="fa fa-sign-out rotate-left" aria-hidden="true"></i>
                     LOGOUT
                 </a>
@@ -17,301 +17,346 @@
     </div>
     <div class="main-wrapper">
         <div class="content-wrapper">
-            <div class="top-section d-flex">
-                <span class="pl-2" (click)="navigateBack()" *ngIf="showDisputes">
-                    <i class="fa fa-duotone fa-angle-left"></i> Back
-                </span>
-                <div class="top-section-header" [ngClass]="{'w-100': !showDisputes}">
-                    <span>
-                        2019 GMC - LICENSE plate CO TBS·878
+            <ng-container *ngIf="!showFeedbackModal && !showSuccessModal">
+                <div class="top-section d-flex">
+                    <span class="pl-2" (click)="navigateBack()" *ngIf="showDisputes || showHearing">
+                        <i class="fa fa-duotone fa-angle-left"></i> Back
                     </span>
-                </div>
-            </div>
-            <div class="content-section">
-                <div class="px-3">
-                    <h3 class="heading">
-                        {{showDisputes? 'DISPUTE SAFETY VIOLATION(S)': 'SAFETY VIOLATIONS'}}
-                    </h3>
-                    <h5 *ngIf="!showDisputes" class="description">
-                        Multiple Civil Penalties are associated to the same vehicle: GMC Sierra, Colorado license plate
-                        TBS·8782
-                    </h5>
-                    <h5 *ngIf="showDisputes" class="description">
-                        Associated to the vehicle GMC Sierra, Colorado license plate TBS·8782.
-                    </h5>
-                    <div *ngIf="violations?.length && !showDisputes" class="more-info">They are arranged from oldest to
-                        newest. You have
-                        the option to pay or
-                        dispute individual Civil Penalties by deselecting from the list below.
-                    </div>
-                    <div *ngIf="showDisputes" class="more-info">You are contesting the following Civil Penalty(s)</div>
-                </div>
-                <div *ngIf="showDisputes" class="text-end">
-                    <button class="request-hearing">
+                    <div class="top-section-header" [ngClass]="{'w-100': !showDisputes && !showHearing}">
                         <span>
-                            <img src="../../assets/images/hearing-icon.jpeg" alt="icon">
+                            2019 GMC - LICENSE plate CO TBS·878
                         </span>
-                        Request a Hearing
-                    </button>
+                    </div>
                 </div>
-                <div style="overflow-x: auto;">
-                    <table class="violations-table table table-striped table-responsive mt-4">
-                        <colgroup>
-                            <col *ngIf="violations?.length>1" style="width:30px;">
-                            <col style="width:30px;">
-                            <col style="width:130px;">
-                            <col style="width:108px;">
-                            <col style="width:auto;">
-                            <col style="width:180px;">
-                            <col style="width:125px;">
-                            <col style="width:90px;">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th *ngIf="violations?.length>1"></th>
-                                <th></th>
-                                <th>NOTICE NUMBER</th>
-                                <th>Notice DATE</th>
-                                <th>NOTICE STAGE</th>
-                                <th>Status</th>
-                                <th></th>
-                                <th>AMOUNT</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngFor="let item of violations">
-                                <tr [ngStyle]="item.noticeDetailToggle ? {'background-color': '#FFF7F2'} : {'background-color': 'inherit'}"
-                                >
-                                    <td *ngIf="violations?.length>1" class="ps-3">
-                                        <input (change)="onChange(item.AmountDue, $event)" type="checkbox"
-                                            [checked]="isSelected">
-                                    </td>
-                                    <td (click)="expandDetails(item)" class="expand-icon">
-                                        <i class="fa fa-light fa-chevron-right" *ngIf="!item.noticeDetailToggle"></i>
-                                        <i class="fa fa-light fa-chevron-up" *ngIf="item.noticeDetailToggle"></i>
-                                    </td>
-                                    <td>{{item.NoticeNumber}}</td>
-                                    <td>{{item.noticeDate}}</td>
-                                    <td>
-                                        <div class="overflow-ellipsis">
-                                            {{item.noticeStage}}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="status collection"
-                                            [class.collection]="item.status === 'In Collections'"
-                                            [class.hearing]="item.status === 'Hearing Requested'"
-                                            [class.unpaid]="item.status === 'UNPAID'"
-                                            [class.dispute]="item.status === 'IN DISPUTE'">
-                                            {{item.status}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div *ngIf="item.discount && !item.noticeDetailToggle" class="discount">
-                                            <div class="value">
-                                                <span>
-                                                    {{item.discount}} discount
-                                                </span>
-                                            </div>
-                                            <div class="info mt-1">
-                                                If paid before 12/14/2023. <br>
-                                                If pay after <span>${{item.amount * 2}}</span>.
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>${{item.amount |number:'1.2-2'}}</td>
-                                </tr>
-                                <tr *ngIf="item?.noticeDetailToggle" style="background-color: #FFF7F2;">
-                                    <td colspan="8" style="box-shadow: none;">
-                                        <table class="table expanded-table mb-4" style="margin: auto;">
-                                            <colgroup >
-                                                <col  style="width: 30px;">
-                                                <col  style="width: 122px;">
-                                                <col  style="width: 145px;">
-                                                <col  style="width: 180px;">
-                                                <col  style="width: auto;">
-                                                <col  style="width: auo;">
-                                                <col  style="width: 92px;">
-                                            </colgroup>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Civil Penality Number</th>
-                                                    <th>Date Time</th>
-                                                    <th>Location</th>
-                                                    <th colspan="2">Safety Violation</th>
-                                                    <th>AMOUNT DUE</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let detail of item?.noticeDetailData">
-                                                    <td>
-                                                        <input type="checkbox">
-                                                    </td>
-                                                    <td>{{detail.civilPenalityNumber}}</td>
-                                                    <td>{{detail.dateTime}}</td>
-                                                    <td>{{detail.location}}</td>
-                                                    <td colspan="2">{{detail.safetyViolation}}</td>
-                                                    <td>${{detail.amountDue}}</td>
-                                                    <td>
-                                                        <button class="evidence-btn" (click)="openModal(item)">
-                                                            <div class="d-flex align-items-center">
-                                                                <i class="fa fa-light fa-large fa-car"></i>
-                                                                <div class="text-start ms-1">
-                                                                    Details
-                                                                </div>
-                                                            </div>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr style="height: auto;">
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;" colspan="2" class="total text-end">TOTAL DUE:</td>
-                                                    <td style="border-width: 0;" class="total-amount"> ${{totalAmount|number:'1.2-2'}}</td>
-                                                    <td style="border-width: 0;"></td>
-                                                </tr>
-                                                <tr *ngIf="item.discount">
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;"></td>
-                                                    <td style="border-width: 0;" colspan="3">
-                                                        <div *ngIf="item.discount" class="discount">
-                                                            <div class="value mt-2">
-                                                                <span>
-                                                                    {{item.discount}} discount
-                                                                </span>
-                                                            </div>
-                                                            <div class="info mt-2">
-                                                                If paid before 12/14/2023.
-                                                                If pay after <span>${{item.amount * 2}}</span>.
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td style="border-width: 0;"></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </ng-container>
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td *ngIf="violations?.length>1"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td colspan="2" class="total text-end">outstanding balance:</td>
-                                <td class="total-amount"> ${{totalAmount|number:'1.2-2'}}</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div *ngIf="!showDisputes;else disputes_content" class="btn-wrapper">
-                    <div class="text-center my-3">
-                        <button class="pay-btn" *ngIf="paymentText" (click)="PaymentSubmit()">
-                            {{paymentText}}
+                <div class="content-section">
+                    <div class="px-3">
+                        <h3 class="heading" *ngIf="!showDisputes && !showHearing">
+                            SAFETY VIOLATIONS
+                        </h3>
+                        <h3 class="heading" *ngIf="showDisputes">
+                            DISPUTE SAFETY VIOLATION(S)
+                        </h3>
+                        <h3 class="heading" *ngIf="showHearing">
+                            REQUEST A HEARING
+                        </h3>
+                        <h5 *ngIf="!showDisputes && !showHearing" class="description">
+                            The above vehicle has more than one outstanding notice
+                        </h5>
+                        <!-- <h5 *ngIf="showDisputes" class="description">
+                            Associated to the vehicle GMC Sierra, Colorado license plate TBS·8782.
+                        </h5> -->
+                        <div *ngIf="violations?.length && !showDisputes && !showHearing" class="more-info">They are
+                            arranged
+                            from oldest to
+                            newest. You have
+                            the option to pay or
+                            dispute individual Civil Penalties by deselecting from the list below.
+                        </div>
+                        <div *ngIf="showDisputes" class="more-info">You are disputing the following Civil Penalty(s),
+                        </div>
+                        <div *ngIf="showHearing" class="more-info">If you do not agree with the results of your dispute,
+                            you
+                            have the right to request a hearing within 30 days of the notice date. Please note that the
+                            purpose of a hearing is solely to determine whether or not a toll evasion has occurred. The
+                            Hearing Officer does not have the legal authority to negotiate, waive, or lessen the civil
+                            penalty amount, extend the payment period, or grant a payment plan.
+                            <u>A $30 Adjudication Fee will
+                                be assessed if the Hearing Officer finds you liable.</u>
+                        </div>
+                        <br>
+                        <div *ngIf="showHearing" class="more-info">To request a hearing, you must complete the form
+                            below or
+                            call (833) 816-0297.</div>
+                        <h3 class="heading mt-5 mb-0" *ngIf="showHearing">
+                            Select the relevant notice(s) below,
+                        </h3>
+                    </div>
+                    <div *ngIf="showDisputes" class="text-end">
+                        <button class="request-hearing" (click)="requestHearing()">
+                            <span>
+                                <img src="../../assets/images/hearing-icon.jpeg" alt="icon">
+                            </span>
+                            Request a Hearing
                         </button>
                     </div>
-                    <div class="text-center mb-4">
-                        <a (click)="diputeclick()" class="dispute-link">{{disputeLinkText}}</a>
+                    <div style="overflow-x: auto;">
+                        <table class="violations-table table table-striped table-responsive mt-4">
+                            <colgroup>
+                                <col *ngIf="violations?.length>1" style="width:30px;">
+                                <col style="width:30px;">
+                                <col style="width:130px;">
+                                <col style="width:108px;">
+                                <col style="width:auto;">
+                                <col style="width:180px;">
+                                <col style="width:125px;">
+                                <col style="width:90px;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th *ngIf="violations?.length>1"></th>
+                                    <th></th>
+                                    <th>NOTICE NUMBER</th>
+                                    <th>Notice DATE</th>
+                                    <th>NOTICE STAGE</th>
+                                    <th>Status</th>
+                                    <th *ngIf="!showDisputes && !showHearing"></th>
+                                    <th *ngIf="!showDisputes && !showHearing">AMOUNT</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of violations">
+                                    <tr
+                                        [ngStyle]="item.noticeDetailToggle ? {'background-color': '#FFF7F2'} : {'background-color': 'inherit'}">
+                                        <td *ngIf="violations?.length>1" class="ps-3">
+                                            <input (change)="onChange(item.AmountDue, $event)" type="checkbox"
+                                                [checked]="isSelected">
+                                        </td>
+                                        <td (click)="expandDetails(item)" class="expand-icon">
+                                            <i class="fa fa-light fa-chevron-right"
+                                                *ngIf="!item.noticeDetailToggle"></i>
+                                            <i class="fa fa-light fa-chevron-up" *ngIf="item.noticeDetailToggle"></i>
+                                        </td>
+                                        <td>{{item.NoticeNumber}}</td>
+                                        <td>{{item.noticeDate}}</td>
+                                        <td>
+                                            <div class="overflow-ellipsis">
+                                                {{item.noticeStage}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="status collection"
+                                                [class.collection]="item.status === 'In Collections'"
+                                                [class.hearing]="item.status === 'Hearing Requested'"
+                                                [class.unpaid]="item.status === 'UNPAID'"
+                                                [class.dispute]="item.status === 'IN DISPUTE'">
+                                                {{item.status}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="item.discount && !item.noticeDetailToggle && !showDisputes && !showHearing"
+                                                class="discount">
+                                                <div class="value">
+                                                    <span>
+                                                        {{item.discount}} discount
+                                                    </span>
+                                                </div>
+                                                <div class="info mt-1">
+                                                    If paid before 12/14/2023. <br>
+                                                    If pay after <span>${{item.amount * 2}}</span>.
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span *ngIf="!showDisputes && !showHearing">
+                                                ${{item.amount |number:'1.2-2'}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="item?.noticeDetailToggle" style="background-color: #FFF7F2;">
+                                        <td colspan="8" style="box-shadow: none;">
+                                            <table class="table expanded-table mb-4" style="margin: auto;">
+                                                <colgroup>
+                                                    <col style="width: 30px;">
+                                                    <col style="width: 122px;">
+                                                    <col style="width: 145px;">
+                                                    <col style="width: 180px;">
+                                                    <col style="width: auto;">
+                                                    <col style="width: auo;">
+                                                    <col style="width: 92px;">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th></th> -->
+                                                        <th>Civil Penality Number</th>
+                                                        <th>Date Time</th>
+                                                        <th>Location</th>
+                                                        <th colspan="2">Safety Violation</th>
+                                                        <th>AMOUNT DUE</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let detail of item?.noticeDetailData">
+                                                        <!-- <td>
+                                                            <input type="checkbox">
+                                                        </td> -->
+                                                        <td>{{detail.civilPenalityNumber}}</td>
+                                                        <td>{{detail.dateTime}}</td>
+                                                        <td>{{detail.location}}</td>
+                                                        <td colspan="2">{{detail.safetyViolation}}</td>
+                                                        <td>${{detail.amountDue}}</td>
+                                                        <td>
+                                                            <button class="evidence-btn" (click)="openModal(item)">
+                                                                <div class="d-flex align-items-center">
+                                                                    <i class="fa fa-light fa-large fa-car"></i>
+                                                                    <div class="text-start ms-1">
+                                                                        Details
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr style="height: auto;">
+                                                        <!-- <td style="border-width: 0;"></td> -->
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;" colspan="2" class="total text-end">
+                                                            TOTAL DUE:</td>
+                                                        <td style="border-width: 0;" class="total-amount">
+                                                            ${{totalAmount|number:'1.2-2'}}</td>
+                                                        <td style="border-width: 0;"></td>
+                                                    </tr>
+                                                    <tr *ngIf="item.discount">
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;"></td>
+                                                        <td style="border-width: 0;" colspan="3">
+                                                            <div *ngIf="item.discount" class="discount">
+                                                                <div class="value mt-2">
+                                                                    <span>
+                                                                        {{item.discount}} discount
+                                                                    </span>
+                                                                </div>
+                                                                <div class="info mt-2">
+                                                                    If paid before 12/14/2023.
+                                                                    If pay after <span>${{item.amount * 2}}</span>.
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="border-width: 0;"></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+
+                            </tbody>
+                            <tfoot *ngIf="!showDisputes && !showHearing">
+                                <tr>
+                                    <td *ngIf="violations?.length>1"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2" class="total text-end">outstanding balance:</td>
+                                    <td class="total-amount"> ${{totalAmount|number:'1.2-2'}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
+                    <div *ngIf="!showDisputes && !showHearing;" class="btn-wrapper">
+                        <div class="text-center my-3">
+                            <button class="pay-btn" *ngIf="paymentText" (click)="PaymentSubmit()">
+                                {{paymentText}}
+                            </button>
+                        </div>
+                        <div class="text-center mb-4">
+                            <a (click)="diputeclick()" class="dispute-link">{{disputeLinkText}}</a>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="showDisputes">
+                        <div class="disputes-container">
+                            <div class="contact-info">
+                                <h5 class="field-heading px-3">
+                                    Your contact Information
+                                </h5>
+                                <div class="fields-wrapper">
+                                    <div class="email">
+                                        <div class="label px-3">
+                                            EMAIL ADDRESS
+                                        </div>
+                                        <div class="field">
+                                            <input type="text" placeholder="JOHN@SMITH.COM">
+                                        </div>
+                                    </div>
+                                    <div class="phone">
+                                        <div class="label px-3">
+                                            PHONE
+                                        </div>
+                                        <div class="field">
+                                            <input type="text" placeholder="(222) 222-2222">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dispute-reason pb-5">
+                                <h5 class="field-heading px-3 mt-5">
+                                    Reason for Disputing
+                                </h5>
+                                <div class="fields-wrapper">
+                                    <div class="reason">
+                                        <div class="label px-3">
+                                            SELECT YOUR REASON FOR DISPUTING THE CIVIL VIOLATION(S)
+                                        </div>
+                                        <div class="field w-100">
+                                            <select required [ngModel]="disputeReasonSelected"
+                                                (ngModelChange)="onChangeDispute($event)">
+                                                <option disabled selected value="">SELECT OPTION</option>
+                                                <option value="Vehicle was stolen">Vehicle was stolen</option>
+                                                <option value="I have never owned this vehicle">I have never owned this
+                                                    vehicle</option>
+                                                <option value="Rental">Rental</option>
+                                                <option value="I no longer own this vehicle">I no longer own this
+                                                    vehicle
+                                                </option>
+                                                <option value="Death certificate">Death certificate</option>
+                                                <option value="Leased">Leased</option>
+                                                <option value="I was forced onto the Express Lane">I was forced onto the
+                                                    Express Lane</option>
+                                                <option value="Bankrupcy">Bankrupcy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dispute-type-content">
+                                <div [ngSwitch]="disputeReasonSelected">
+                                    <div *ngSwitchCase="'Vehicle was stolen'">
+                                        <app-stolen (btnAction)="disputeAction($event)"></app-stolen>
+                                    </div>
+                                    <div *ngSwitchCase="'I have never owned this vehicle'">
+                                        <app-never-owned (btnAction)="disputeAction($event)"></app-never-owned>
+                                    </div>
+                                    <div *ngSwitchCase="'Rental'">
+                                        <app-rental (btnAction)="disputeAction($event)"></app-rental>
+                                    </div>
+                                    <div *ngSwitchCase="'I no longer own this vehicle'">
+                                        <app-no-longer-own (btnAction)="disputeAction($event)"></app-no-longer-own>
+                                    </div>
+                                    <div *ngSwitchCase="'Death certificate'">
+                                        <app-death (btnAction)="disputeAction($event)"></app-death>
+                                    </div>
+                                    <div *ngSwitchCase="'Leased'">
+                                        <app-leased (btnAction)="disputeAction($event)"></app-leased>
+                                    </div>
+                                    <div *ngSwitchCase="'I was forced onto the Express Lane'">
+                                        <app-forced-onto (btnAction)="disputeAction($event)"></app-forced-onto>
+                                    </div>
+                                    <div *ngSwitchCase="'Bankrupcy'">
+                                        <app-bankrupcy (btnAction)="disputeAction($event)"></app-bankrupcy>
+                                    </div>
+                                    <!-- <div *ngSwitchDefault>Uh oh! Somethings wrong</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="showHearing">
+                        <app-request-hearing (btnAction)="hearingAction($event)"></app-request-hearing>
+                    </ng-container>
                 </div>
-                <ng-template #disputes_content>
-                    <div class="disputes-container">
-                        <div class="contact-info">
-                            <h5 class="field-heading px-3">
-                                Your contact Information
-                            </h5>
-                            <div class="fields-wrapper">
-                                <div class="email">
-                                    <div class="label px-3">
-                                        EMAIL ADDRESS
-                                    </div>
-                                    <div class="field">
-                                        <input type="text" placeholder="JOHN@SMITH.COM">
-                                    </div>
-                                </div>
-                                <div class="phone">
-                                    <div class="label px-3">
-                                        PHONE
-                                    </div>
-                                    <div class="field">
-                                        <input type="text" placeholder="(222) 222-2222">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dispute-reason pb-5">
-                            <h5 class="field-heading px-3">
-                                Reason for Disputing
-                            </h5>
-                            <div class="fields-wrapper">
-                                <div class="reason">
-                                    <div class="label px-3">
-                                        SELECT YOUR REASON FOR DISPUTING THE CIVIL VIOLATION(S)
-                                    </div>
-                                    <div class="field w-100">
-                                        <select required [ngModel]="disputeReasonSelected"
-                                            (ngModelChange)="onChangeDispute($event)">
-                                            <option disabled selected value="">SELECT OPTION</option>
-                                            <option value="Vehicle was stolen">Vehicle was stolen</option>
-                                            <option value="I have never owned this vehicle">I have never owned this
-                                                vehicle</option>
-                                            <option value="Rental">Rental</option>
-                                            <option value="I no longer own this vehicle">I no longer own this vehicle
-                                            </option>
-                                            <option value="Death certificate">Death certificate</option>
-                                            <option value="Leased">Leased</option>
-                                            <option value="I was forced onto the Express Lane">I was forced onto the
-                                                Express Lane</option>
-                                            <option value="Bankrupcy">Bankrupcy</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dispute-type-content">
-                            <div [ngSwitch]="disputeReasonSelected">
-                                <div *ngSwitchCase="'Vehicle was stolen'">
-                                    <app-stolen (btnAction)="disputeAction($event)"></app-stolen>
-                                </div>
-                                <div *ngSwitchCase="'I have never owned this vehicle'">
-                                    <app-never-owned (btnAction)="disputeAction($event)"></app-never-owned>
-                                </div>
-                                <div *ngSwitchCase="'Rental'">
-                                    <app-rental (btnAction)="disputeAction($event)"></app-rental>
-                                </div>
-                                <div *ngSwitchCase="'I no longer own this vehicle'">
-                                    <app-no-longer-own (btnAction)="disputeAction($event)"></app-no-longer-own>
-                                </div>
-                                <div *ngSwitchCase="'Death certificate'">
-                                    <app-death (btnAction)="disputeAction($event)"></app-death>
-                                </div>
-                                <div *ngSwitchCase="'Leased'">
-                                    <app-leased (btnAction)="disputeAction($event)"></app-leased>
-                                </div>
-                                <div *ngSwitchCase="'I was forced onto the Express Lane'">
-                                    <app-forced-onto (btnAction)="disputeAction($event)"></app-forced-onto>
-                                </div>
-                                <div *ngSwitchCase="'Bankrupcy'">
-                                    <app-bankrupcy (btnAction)="disputeAction($event)"></app-bankrupcy>
-                                </div>
-                                <!-- <div *ngSwitchDefault>Uh oh! Somethings wrong</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
+            </ng-container>
+            <div id="successModal" *ngIf="showSuccessModal" class="text-center">
+                <h5>Hearing Requested</h5>
+                <p>You will receive an email confirmation shortly
+            
+                </p>
+                <button (click)="showSuccessModal=false">CLOSE</button>
             </div>
         </div>
     </div>
@@ -351,6 +396,33 @@
         </div>
     </div>
 </div>
+<div id="feedbackModal" class="modal" *ngIf="showFeedbackModal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="close-btn" (click)="showFeedbackModal =false">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h5 class="px-2">How easy was it to use our website?</h5>
+            <div class="options mt-4 mb-5">
+                <span>very easy</span>
+                <span>easy</span>
+                <span>difficult</span>
+                <span>very difficult</span>
+            </div>
+            <h5 class="px-2">What can we do to improve your web experience?</h5>
+            <div class="comment mt-4 mb-3">
+                <textarea rows="6" placeholder="Type yout comment or suggestion here"></textarea>
+            </div>
+            <div class="button-wrapper mt-2">
+                <button class="cancel me-3">CANCEL</button>
+                <button class="submit" (click)="submitFeedback()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div id="myPaymentModal" class="modal" *ngIf="showPaymentModal">
     <!-- Modal content -->
     <div class="modal-content">

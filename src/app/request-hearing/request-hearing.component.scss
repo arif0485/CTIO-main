@@ -1,0 +1,178 @@
+.main-container {
+  padding: 40px 0;
+  h5,
+  h4,
+  h3 {
+    font-weight: 700;
+  }
+  p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .main-content {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 25px 20px;
+    margin-bottom: 3rem;
+    input {
+      width: calc(30vw - 100px);
+      height: 100%;
+      border: none;
+      outline: none;
+      padding: 12px 15px;
+      border-radius: 10px;
+      background: #f8f8f8;
+    }
+    .fields-wrapper {
+      display: flex;
+      justify-content: space-between;
+      .label {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        /* identical to box height */
+        letter-spacing: 0.1em;
+        color: #000000;
+        margin-bottom: 8px;
+      }
+    }
+    .respondent-section {
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .attorney-section {
+      border-top: 1px solid #010101;
+      border-bottom: 1px solid #010101;
+      display: flex;
+      align-items: center;
+      .detail {
+        border-right: 1px solid #010101;
+        padding: 20px 20px 20px 0;
+        width: 70%;
+        .name {
+          input {
+            width: 100%;
+          }
+        }
+        .phone,
+        .email {
+          flex-grow: 0;
+          flex-shrink: 0;
+          flex-basis: calc(50% - 20px);
+          input {
+            width: 100%;
+          }
+        }
+      }
+      .vehicle {
+        padding: 25px 40px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: #000000;
+        .label {
+          display: inline-block;
+          font-size: 15px;
+          line-height: 18px;
+          text-transform: uppercase;
+          margin-bottom: 10px;
+        }
+        .value {
+          font-size: 19px;
+          line-height: 23px;
+        }
+      }
+    }
+    .check-item {
+      input[type="checkbox"] {
+        width: auto !important;
+        transform: scale(1.6);
+        background: #f4f4f4;
+        border: 1px solid #b0b0b0;
+        border-radius: 10px;
+        accent-color: #ef7521;
+      }
+      .text {
+        margin-left: 10px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000000;
+      }
+    }
+    .alleged {
+      div {
+        padding: 10px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.1em;
+
+        color: #000000;
+      }
+    }
+  }
+  .final-declarations {
+    input[type="checkbox"] {
+      transform: scale(1.6);
+      background: #f4f4f4;
+      border: 1px solid #b0b0b0;
+      border-radius: 10px;
+      accent-color: #ef7521;
+    }
+    .text {
+      margin-left: 15px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 21px;
+      color: #000000;
+      display: inline;
+    }
+  }
+  .button-wrapper {
+    text-align: right;
+    margin-top: 3rem;
+    button {
+      border: none;
+      outline: none;
+      font-size: 20px;
+    }
+    .cancel {
+      width: 215.97px;
+      height: 50px;
+      color: #706a6a;
+      background-color: transparent;
+    }
+    .submit {
+      width: 215.97px;
+      height: 50px;
+      background: #ef7521;
+      border-radius: 10px;
+      color: white;
+      font-weight: 700;
+    }
+  }
+}
+@media screen and (max-width: 765px) {
+  .fields-wrapper {
+    flex-direction: column;
+    .field {
+      margin-bottom: 10px;
+    }
+    .field input {
+      width: 100% !important;
+    }
+  }
+  .button-wrapper {
+    text-align: center !important;
+    button {
+      width: 180px !important;
+    }
+  }
+}

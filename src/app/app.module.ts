@@ -22,6 +22,7 @@ import { ForcedOntoComponent } from './violations/disputes/forced-onto/forced-on
 import { BankrupcyComponent } from './violations/disputes/bankrupcy/bankrupcy.component';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
+import { RequestHearingComponent } from './request-hearing/request-hearing.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DecimalPipe } from '@angular/common';
     DeathComponent,
     LeasedComponent,
     ForcedOntoComponent,
-    BankrupcyComponent
+    BankrupcyComponent,
+    RequestHearingComponent
   ],
   imports: [
     BrowserModule,

@@ -14,9 +14,12 @@ export class ViolationsComponent implements OnInit {
   InitialTotal = 0;
   caluculationAmount: number = 0;
   showModal: boolean = false;
+  showFeedbackModal: boolean = false;
+  showSuccessModal: boolean = false;
   showPaymentModal: boolean = false;
   srcofimage: string | undefined;
   showDisputes: boolean = false;
+  showHearing: boolean = false;
   disputeReasonSelected: string = '';
   noticeNumber = '';
   licensePlateNumber = '';
@@ -42,8 +45,18 @@ export class ViolationsComponent implements OnInit {
       this.paymentText = "Pay $" + 0 + " for all outstanding Civil Penalties";
     }
   }
+  hearingAction(type: any) {
+    if (type === 'cancel') {
+      this.showHearing = false;
+    }
+    if (type === 'submit') {
+      this.showHearing = false;
+      this.showFeedbackModal = true;
+    }
+  }
   diputeclick() {
     this.showDisputes = true;
+    this.showHearing = false;
     this.isSelected = false;
     this.showViolations = true;
     let accountId = this.apiService.authData.AccountGuid;
@@ -62,6 +75,10 @@ export class ViolationsComponent implements OnInit {
       console.log(response);
       this.showViolations = true;
     });
+  }
+  requestHearing(){
+    this.showDisputes = false;
+    this.showHearing = true;
   }
   searchViolations(value: any) {
     if (value) {
@@ -91,6 +108,9 @@ export class ViolationsComponent implements OnInit {
   navigateBack() {
     if (this.showDisputes == true) {
       this.searchViolations("search");
+    }else if(this.showHearing){
+      this.showHearing = false;
+      this.showDisputes = true;
     }
     else {
       this.violations = [];
@@ -146,6 +166,11 @@ export class ViolationsComponent implements OnInit {
         this.paymentText = "Pay $" + this._decimalPipe.transform(this.caluculationAmount, '1.2-2') + ' for Civil Penalties';
       }
     }
+  }
+
+  submitFeedback(){
+    this.showFeedbackModal = false;
+    this.showSuccessModal = true;
   }
 }
 let violationsData: any[] = [
