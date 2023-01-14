@@ -25,6 +25,9 @@ export class ViolationsComponent implements OnInit {
   licensePlateNumber = '';
   showViolations: boolean = false;
   isSelected: boolean = false;
+  modalImageMaximized = false;
+  images:any = [];
+  selectedimage = null
   constructor(private apiService: ApiService, private _decimalPipe: DecimalPipe) { }
   postformData = {
     'NoticeNumber': "S910000705453",
@@ -120,9 +123,10 @@ export class ViolationsComponent implements OnInit {
       this.totalAmount = 0;
     }
   }
-  openModal(violation: any) {
+  openModal(details: any) {
     this.showModal = true;
-    this.srcofimage = "https://www.w3schools.com/images/w3schools_green.jpg";
+    this.images = details?.images;
+    this.selectedimage = this.images[0];
   }
   closeModal() {
     this.showModal = false;
@@ -211,20 +215,35 @@ let noticeDetailData = [
     dateTime: "11/19/23 08:37 AM",
     location: 'I-70 MEXL – Westbound',
     safetyViolation: 'Vehicle using I-70 Mountain Express Lane outside operating hours',
-    amountDue: '150'
+    amountDue: '150',
+    images : [
+      "../../assets/images/car-image1.png",
+      "../../assets/images/car-image.png",
+      "../../assets/images/map-image.png",
+    ]
   },
   {
     civilPenalityNumber: 10453,
     dateTime: "11/19/23 08:42 AM",
     location: 'I-70 MEXL – Westbound',
     safetyViolation: 'Vehicle using I-70 Mountain Express Lane outside operating hours',
-    amountDue: '150'
+    amountDue: '150',
+    images : [
+      "../../assets/images/car-image1.png",
+      "../../assets/images/car-image.png",
+      "../../assets/images/map-image.png",
+    ]
   },
   {
     civilPenalityNumber: 10454,
     dateTime: "11/19/23 08:49 AM",
     location: 'I-70 MEXL – Westbound',
     safetyViolation: 'Vehicle using I-70 Mountain Express Lane outside operating hours',
-    amountDue: '150'
+    amountDue: '150',
+    images : [
+      "../../assets/images/car-image1.png",
+      "../../assets/images/car-image.png",
+      "../../assets/images/map-image.png",
+    ]
   }
 ]

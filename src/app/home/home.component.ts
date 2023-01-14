@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   showLicenceEroor: boolean = false;
   showStateError: boolean = false;
   noticeNumberError: boolean = false;
-  showModal: boolean = false;
+  showModal: boolean = true;
   ValidLicenceNumber = false;
   @Output() btnAction = new EventEmitter<string>();
   ValidnoticeNumberError: boolean = false;

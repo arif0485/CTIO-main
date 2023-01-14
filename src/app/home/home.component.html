@@ -18,8 +18,10 @@
             <p class="text-center">Located on the top-right corner of your notice</p>
             <div class="text-center" style="overflow-x: hidden;">
                 <div class="btn-group">
-                    <button class="yes" [ngClass]="{'selected': hasNoticeNumber}" (click)="hasNoticeNumber = true">YES</button>
-                    <button class="no" [ngClass]="{'selected': !hasNoticeNumber}" (click)="hasNoticeNumber = false">NO</button>
+                    <button class="yes" [ngClass]="{'selected': hasNoticeNumber}"
+                        (click)="hasNoticeNumber = true">YES</button>
+                    <button class="no" [ngClass]="{'selected': !hasNoticeNumber}"
+                        (click)="hasNoticeNumber = false">NO</button>
                 </div>
             </div>
             <div class="field-wrapper notice" *ngIf="hasNoticeNumber">
@@ -30,7 +32,7 @@
                     <input type="text" [(ngModel)]="noticeNumber" placeholder="000 000 000">
                     <div class="text-danger text-end error-text mt-1">Required field</div>
                 </div>
-                <div class="field" [ngClass]="{'error': ValidnoticeNumberError}">                   
+                <div class="field" [ngClass]="{'error': ValidnoticeNumberError}">
                     <div class="text-danger text-end error-text mt-1">Please Enter Valid Notice Number</div>
                 </div>
             </div>
@@ -76,7 +78,9 @@
             <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-            <h2>Some Content Here</h2>
+            <iframe
+                src="https://staging.emergetechnology.net/#/FBCTRA/preloaded/payment/953fe886-6493-ed11-aa9e-b1bf1a90f0ad"
+                title="pamentDetails" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
